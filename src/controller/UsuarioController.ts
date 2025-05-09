@@ -71,20 +71,27 @@ class UsuarioController extends Usuario {
         }
     }
 
-    static async listar(req: Request, res: Response) {
+     /**
+     * Cadastra um novo usuário.
+     * Também processa o upload da imagem de perfil, se fornecida.
+     * 
+     * @param req Objeto de requisição HTTP contendo os dados do usuário e, opcionalmente, o arquivo de imagem.
+     * @param res Objeto de resposta HTTP.
+     * @returns Mensagem de sucesso ou erro em formato JSON.
+     */
+
+     static async todos(req: Request, res: Response) {
         try {
-            const usuarios = await Usuario.listarUsuarios(); 
+            const listaDeUsuarios = await Usuario.listarUsuarios();
 
-            if (!usuarios || usuarios.length === 0) {
-                return res.status(404).json({ mensagem: 'Nenhum usuário encontrado' });
-            }
-
-            return res.status(200).json(usuarios);
+            res.status(200).json(listaDeUsuarios);
         } catch (error) {
-            console.error('Erro ao listar usuários:', error);
-            return res.status(500).json({ erro: 'Erro ao listar usuários', detalhes: error });
+            console.log(`Erro ao acessar método herdado: ${error}`);
+
+            res.status(400).json("Erro ao recuperar as informações do Usuario");
         }
     }
+
 }
 
 export default UsuarioController;

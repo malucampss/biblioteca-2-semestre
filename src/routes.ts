@@ -30,6 +30,9 @@ router.post(SERVER_ROUTES.NOVO_EMPRESTIMO, EmprestimoController.cadastrar);
 router.put(SERVER_ROUTES.ATUALIZAR_EMPRESTIMO, EmprestimoController.atualizar);
 router.put(SERVER_ROUTES.REMOVER_EMPRESTIMO, EmprestimoController.remover);
 
+//CRUD Usuario
+router.get(SERVER_ROUTES.LISTAR_USUARIO, UsuarioController.todos);
+
 // Cadastro de Usuário com Upload de Imagem de Perfil
 router.post(SERVER_ROUTES.NOVO_USUARIO, upload.single('imagemPerfil'), UsuarioController.cadastrar);
 
